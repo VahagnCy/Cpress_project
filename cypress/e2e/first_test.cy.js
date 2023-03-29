@@ -30,6 +30,8 @@
 //     cy.get('*[class^="card"]')
 // })
 
+//COMENT FOR GIT
+
 it('Usint get and Find equality', () => {
     cy.visit("https://next.privat24.ua/deposit/open")
     cy.get('tbody').find('td').find('div').find('button').eq(0)
