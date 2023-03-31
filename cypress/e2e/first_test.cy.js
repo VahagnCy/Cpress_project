@@ -1,61 +1,34 @@
 ///<reference types="Cypress" />
 
-// it('By Id', () => {
-//     cy.visit("https://facebook.com/")
-//     cy.get("#email")
-// })
-
-// it('By Class', () => {
-//     cy.visit("https://docs.cypress.io/api/commands/get.html#Syntax")
-//     cy.get(".searchBox_ZlJk")
-// })
-
-// it('By Tag', () => {
-//     cy.visit("https://docs.cypress.io/api/commands/get.html#Syntax")
-//     cy.get("nav")
-// })
-
-// it('By Tag Value', () => {
-//     cy.visit("https://facebook.com")
-//     cy.get('[name="pass"]')
-// })
-
-// it('By Different Tag ', () => {
-//     cy.visit("https://facebook.com")
-//     cy.get('[data-testid="open-registration-form-button"][role="button"]')
-// })
-
-// it.only('By Different Tag ', () => {
-//     cy.visit("https://next.privat24.ua")
-//     cy.get('*[class^="card"]')
-// })
-
-//COMENT FOR GIT
-
-it('Usint get and Find equality', () => {
-    cy.visit("https://next.privat24.ua/deposit/open")
-    cy.get('tbody').find('td').find('div').find('button').eq(0)
-})
-
-it('Usint get and Find equality', () => {
-    cy.viewport(1800, 700)
-    cy.visit("https://docs.cypress.io/api/commands/get.html#Syntax")
-    cy.get('div')
-})
-
-it('', () => {
+it('Replanishment of', ()=> {
     cy.visit('https://next.privat24.ua/mobile?lang=en')
-    cy.contains('Sign in')
+        .get('[data-qa-node="phone-number"]')
+        .type('686979712')
+        .get('[data-qa-node="amount"]')
+        .clear()
+        .type('1')
+        .get('[data-qa-node="numberdebitSource"]')
+        .clear()
+        .type('4242424242424242')
+        .get('[data-qa-node="expiredebitSource"]')
+        .clear()
+        .type('0524')
+        .get('[data-qa-node="cvvdebitSource"]')
+        .clear()
+        .type('111')
+        .get('[data-qa-node="submit"]')
+        .click()
+
+        .get('[data-qa-node="card"]')
+        .should('have.text', '4242 **** **** 4242')
+
+        .get('[data-qa-node="amount"]')
+        .should('contain.text', '1')
+
+        .get('[data-qa-node="commission-currency"]')
+        .eq(0)
+        .should('contain.text', 'UAH')
+
+        
+
 })
-
-it('', () => {
-    cy.visit('https://next.privat24.ua/mobile?lang=en')
-    cy.contains('Sign in', {matchCase: false})
-})
-
-it('', () => {
-    cy.visit('https://next.privat24.ua/mobile?lang=en')
-    cy.get('footer').contains('Go to old version')
-})
-
-
