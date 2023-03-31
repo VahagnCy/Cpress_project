@@ -37,10 +37,25 @@ it('Usint get and Find equality', () => {
     cy.get('tbody').find('td').find('div').find('button').eq(0)
 })
 
-it.only('Usint get and Find equality', () => {
+it('Usint get and Find equality', () => {
     cy.viewport(1800, 700)
     cy.visit("https://docs.cypress.io/api/commands/get.html#Syntax")
     cy.get('div')
+})
+
+it('', () => {
+    cy.visit('https://next.privat24.ua/mobile?lang=en')
+    cy.contains('Sign in')
+})
+
+it('', () => {
+    cy.visit('https://next.privat24.ua/mobile?lang=en')
+    cy.contains('Sign in', {matchCase: false})
+})
+
+it('', () => {
+    cy.visit('https://next.privat24.ua/mobile?lang=en')
+    cy.get('footer').contains('Go to old version')
 })
 
 
