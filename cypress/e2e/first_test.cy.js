@@ -5,7 +5,7 @@ import { basePage } from "../support/pages/basePage";
 
 it("Replanishment of", () => {
     basePage.open("https://next.privat24.ua/mobile?lang=en")
-    mobileReplanishment.typePhoneNumber('68697912')
+    mobileReplanishment.typePhoneNumber('686979712')
     basePage.typeAmount('1')
     basePage.typeDebitCardData('4242424242424242', '2504', '111')
     basePage.submitPayment()
