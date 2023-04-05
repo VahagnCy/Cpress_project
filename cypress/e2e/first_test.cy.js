@@ -1,61 +1,26 @@
 ///<reference types="Cypress" />
+import { mobileReplanishment } from "../support/pages/mobilerReplanishment";
+import { transfers } from "../support/pages/transfers";
+import { basePage } from "../support/pages/basePage";
 
-// it('By Id', () => {
-//     cy.visit("https://facebook.com/")
-//     cy.get("#email")
-// })
+it("Replanishment of", () => {
+    basePage.open("https://next.privat24.ua/mobile?lang=en")
+    mobileReplanishment.typePhoneNumber('68697912')
+    basePage.typeAmount('1')
+    basePage.typeDebitCardData('4242424242424242', '2504', '111')
+    basePage.submitPayment()
+    mobileReplanishment.checkDebitCard("4242 **** **** 4242")
+    mobileReplanishment.checkDebitAmount("1")
+    mobileReplanishment.checkPaymentCurrency("UAH")
+});
 
-// it('By Class', () => {
-//     cy.visit("https://docs.cypress.io/api/commands/get.html#Syntax")
-//     cy.get(".searchBox_ZlJk")
-// })
-
-// it('By Tag', () => {
-//     cy.visit("https://docs.cypress.io/api/commands/get.html#Syntax")
-//     cy.get("nav")
-// })
-
-// it('By Tag Value', () => {
-//     cy.visit("https://facebook.com")
-//     cy.get('[name="pass"]')
-// })
-
-// it('By Different Tag ', () => {
-//     cy.visit("https://facebook.com")
-//     cy.get('[data-testid="open-registration-form-button"][role="button"]')
-// })
-
-// it.only('By Different Tag ', () => {
-//     cy.visit("https://next.privat24.ua")
-//     cy.get('*[class^="card"]')
-// })
-
-//COMENT FOR GIT
-
-it('Usint get and Find equality', () => {
-    cy.visit("https://next.privat24.ua/deposit/open")
-    cy.get('tbody').find('td').find('div').find('button').eq(0)
-})
-
-it('Usint get and Find equality', () => {
-    cy.viewport(1800, 700)
-    cy.visit("https://docs.cypress.io/api/commands/get.html#Syntax")
-    cy.get('div')
-})
-
-it('', () => {
-    cy.visit('https://next.privat24.ua/mobile?lang=en')
-    cy.contains('Sign in')
-})
-
-it('', () => {
-    cy.visit('https://next.privat24.ua/mobile?lang=en')
-    cy.contains('Sign in', {matchCase: false})
-})
-
-it('', () => {
-    cy.visit('https://next.privat24.ua/mobile?lang=en')
-    cy.get('footer').contains('Go to old version')
-})
-
-
+it.only("mony transfer between foreign cards", () => {
+    basePage.open("https://next.privat24.ua/money-transfer/card?lang=en")
+    basePage.typeDebitCardData('4242424242424242', '2504', '111')
+    transfers.typeDebitNameSurname('Shane', 'McConnel')
+    transfers.typeReceiverCard("5309233034765085")
+    transfers.typeReceiverNameSurname('Vahagn', 'Hovvyan')
+    basePage.typeAmount('2000')
+    transfers.typeComment("Cypress Test")
+    basePage.submitPayment()
+});
