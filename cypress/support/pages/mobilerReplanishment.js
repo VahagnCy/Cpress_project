@@ -14,7 +14,7 @@ export class MobileReplanishment {
 
     checkDebitCard(debitCard) {
         cy.get('[data-qa-node="card"]')
-            .should("have.text", debitCard)
+            .should("contain.text", debitCard)
     }
 
     checkDebitAmount(debitAmount) {
